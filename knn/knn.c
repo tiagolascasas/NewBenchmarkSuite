@@ -119,8 +119,7 @@ void kNN_MinMaxNormalize(DATA_TYPE min[N_FEATURES], DATA_TYPE max[N_FEATURES],
 CLASS_TYPE kNN_Predict(DATA_TYPE training_X[N_TRAINING][N_FEATURES],
                        CLASS_TYPE training_Y[N_TRAINING],
                        DATA_TYPE queryDatapoint[N_FEATURES],
-                       DATA_TYPE min[N_FEATURES], DATA_TYPE max[N_FEATURES],
-                       int *id)
+                       DATA_TYPE min[N_FEATURES], DATA_TYPE max[N_FEATURES])
 {
     double bestDistanceMax = DBL_MAX;
     double bestDistances[K];
@@ -141,10 +140,14 @@ CLASS_TYPE kNN_Predict(DATA_TYPE training_X[N_TRAINING][N_FEATURES],
             distance += diff * diff;
         }
 
-        if (distance < bestDistanceMax)
-        {
-            bestDistanceMax = kNN_UpdateBestCaching(distance, i, bestDistances, bestPointsIdx);
-        }
+        bestDistanceMax = kNN_UpdateBestCaching(distance, i, bestDistances, bestPointsIdx);
+
+        // Slighly improved version, it doesn't need to update the K-best distances if
+        // the current point is worse than the worst K-best distance.
+        // if (distance < bestDistanceMax)
+        //{
+        //    bestDistanceMax = kNN_UpdateBestCaching(distance, i, bestDistances, bestPointsIdx);
+        //}
     }
 
     CLASS_TYPE voteResult = kNN_VoteBetweenBest(bestPointsIdx, training_Y);
@@ -159,6 +162,6 @@ void kNN_PredictAll(DATA_TYPE training_X[N_TRAINING][N_FEATURES],
 {
     for (int i = 0; i < N_TESTING; i++)
     {
-        testing_Y[i] = kNN_Predict(training_X, training_Y, testing_X[i], min, max, NULL);
+        testing_Y[i] = kNN_Predict(training_X, training_Y, testing_X[i], min, max);
     }
 }

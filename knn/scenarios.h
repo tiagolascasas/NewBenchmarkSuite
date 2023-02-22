@@ -9,7 +9,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef SCENARIO
-#define SCENARIO SCENARIO_WISDM_K3_FLOAT
+#define SCENARIO WI_K3_F
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -18,37 +18,37 @@
 // clang-format off
 #define DATASETS_DIRECTORY ./datasets
 
-#define SCENARIO_WISDM_K3_FLOAT 1
-#define SCENARIO_WISDM_K3_DOUBLE 2
-#define SCENARIO_WISDM_K20_FLOAT 3
-#define SCENARIO_WISDM_K20_DOUBLE 4
-#define SCENARIO_gen100x8x10000_K20_FLOAT 5
-#define SCENARIO_gen100x8x10000_K20_DOUBLE 6
-#define SCENARIO_gen100x8x50000_K20_FLOAT 7
-#define SCENARIO_gen100x8x50000_K20_DOUBLE 8
+#define WI_K3_F 1
+#define WI_K3_D 2
+#define WI_K20_F 3
+#define WI_K20_D 4
+#define GA_K20_F 5
+#define GA_K20_D 6
+#define GB_K20_F 7
+#define GB_K20_D 8
 
-#if SCENARIO == SCENARIO_WISDM_K3_FLOAT
+#if SCENARIO == WI_K3_F
 #define SCENARIO_FILE params-k3-float.h
 #define SCENARIO_DIRECTORY scenario-wisdm
-#elif SCENARIO == SCENARIO_WISDM_K3_DOUBLE
+#elif SCENARIO == WI_K3_D
 #define SCENARIO_FILE params-k3-double.h
 #define SCENARIO_DIRECTORY scenario-wisdm
-#elif SCENARIO == SCENARIO_WISDM_K20_FLOAT
+#elif SCENARIO == WI_K20_F
 #define SCENARIO_FILE params-k20-float.h
 #define SCENARIO_DIRECTORY scenario-wisdm
-#elif SCENARIO == SCENARIO_WISDM_K20_DOUBLE
+#elif SCENARIO == WI_K20_D
 #define SCENARIO_FILE params-k20-double.h
 #define SCENARIO_DIRECTORY scenario-wisdm
-#elif SCENARIO == SCENARIO_gen100x8x10000_K20_FLOAT
+#elif SCENARIO == GA_K20_F
 #define SCENARIO_FILE params-k20-float.h
 #define SCENARIO_DIRECTORY scenario-gen100x8x10000
-#elif SCENARIO == SCENARIO_gen100x8x10000_K20_DOUBLE
+#elif SCENARIO == GA_K20_D
 #define SCENARIO_FILE params-k20-double.h
 #define SCENARIO_DIRECTORY scenario-gen100x8x10000
-#elif SCENARIO == SCENARIO_gen100x8x50000_K20_FLOAT
+#elif SCENARIO == GB_K20_F
 #define SCENARIO_FILE params-k20-float.h
 #define SCENARIO_DIRECTORY scenario-gen100x8x50000
-#elif SCENARIO == SCENARIO_gen100x8x50000_K20_DOUBLE
+#elif SCENARIO == GB_K20_D
 #define SCENARIO_FILE params-k20-double.h
 #define SCENARIO_DIRECTORY scenario-gen100x8x50000
 #endif

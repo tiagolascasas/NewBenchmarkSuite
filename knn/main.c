@@ -59,11 +59,10 @@ int main(int argc, char **argv)
 
     printf("Executing kNN with arrays...\n");
     Timer *timer = timer_init();
-    timer_start(timer);
 
     // kNN itself
+    timer_start(timer);
     kNN_PredictAll(training_X, training_Y, testing_X, predicted_testing_Y, min, max);
-
     timer_stop(timer);
 
 #if ACCURACY == 1
