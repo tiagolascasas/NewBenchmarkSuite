@@ -26,3 +26,11 @@ To run the benchmark, simply type in:
 ```
 ./knn
 ```
+
+## Synthesizing the kNN kernel on Vitis HLS:
+
+1. Add `knn.c` and `scenario.h` to a Vitis HLS project
+2. Set `kNN_PredictAll` or `kNN_Predict` as the top function, depending on what you want
+3. Uncomment the `#define VITIS_HLS` line on `scenarios.h` (or define it in the Vitis HLS project build instructions, if you want)
+
+This version merely provides the size and data types of each scenario, which is enough to synthesize a Vitis HLS kernel. It does not load up the dataset, unlike the default CPU version.

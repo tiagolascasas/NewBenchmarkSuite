@@ -1,8 +1,15 @@
 /**
  * FEUP.DEI, v0.6 November 2021
+ * Vitis HLS version Feburary 2023
  */
 #ifndef __SCENARIOS_H__
 #define __SCENARIOS_H__
+
+///////////////////////////////////////////////////////////////////////////////
+//                    TURN ON SIMPLIFIED VITIS HLS VERSION                   //
+///////////////////////////////////////////////////////////////////////////////
+
+// #define VITIS_HLS
 
 ///////////////////////////////////////////////////////////////////////////////
 //                         CHOOSE YOUR SCENARIO HERE                         //
@@ -15,9 +22,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                 SETTINGS                                  //
 ///////////////////////////////////////////////////////////////////////////////
-// clang-format off
-#define DATASETS_DIRECTORY ./datasets
-
 #define WI_K3_F 1
 #define WI_K3_D 2
 #define WI_K20_F 3
@@ -26,6 +30,83 @@
 #define GA_K20_D 6
 #define GB_K20_F 7
 #define GB_K20_D 8
+
+#ifdef VITIS_HLS
+#if SCENARIO == WI_K3_F
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define K 3
+#define DATA_TYPE float
+#endif
+#if SCENARIO == WI_K3_D
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define K 3
+#define DATA_TYPE double
+#endif
+#if SCENARIO == WI_K20_F
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define K 20
+#define DATA_TYPE float
+#endif
+#if SCENARIO == WI_K20_D
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define K 20
+#define DATA_TYPE double
+#endif
+#if SCENARIO == GA_K20_F
+#define N_TRAINING 8004
+#define N_TESTING 100 // prev: 1996
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define K 20
+#define DATA_TYPE float
+#endif
+#if SCENARIO == GA_K20_D
+#define N_TRAINING 8004
+#define N_TESTING 1996
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define K 20
+#define DATA_TYPE double
+#endif
+#if SCENARIO == GB_K20_F
+#define N_TRAINING 40002
+#define N_TESTING 9998
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define K 20
+#define DATA_TYPE float
+#endif
+#if SCENARIO == GB_K20_D
+#define N_TRAINING 40002
+#define N_TESTING 9998
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define K 20
+#define DATA_TYPE double
+#endif
+
+#if N_CLASSES > 128
+#define class_t short // consider 0..32767 classes and -1 for unknown
+#else
+#define class_t char // consider 0..127 classes and -1 for unknown
+#endif
+#define CLASS_TYPE class_t
+
+#else
+// clang-format off
+#define DATASETS_DIRECTORY ./datasets
 
 #if SCENARIO == WI_K3_F
 #define SCENARIO_FILE params-k3-float.h
@@ -174,5 +255,7 @@ typedef struct
 
 #define CLASS_TYPE class_t
 #define DATA_TYPE datatype
+
+#endif
 
 #endif

@@ -1,6 +1,5 @@
 #include <float.h>
 #include <math.h>
-
 #include "scenarios.h"
 
 double kNN_UpdateBest(double queryDistance, int queryIdx,
