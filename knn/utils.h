@@ -4,10 +4,10 @@
 #include "scenarios.h"
 #include <math.h>
 
-char get_class_name(class_t class_id);
+char get_class_name(CLASS_TYPE class_id);
 
-void verify_results(int num_new_points, const class_t *classifications,
-                    const class_t *key);
+void verify_results(int num_new_points, const CLASS_TYPE *classifications,
+                    const CLASS_TYPE *key);
 
 int get_reference_score(double time_s, int num_points);
 

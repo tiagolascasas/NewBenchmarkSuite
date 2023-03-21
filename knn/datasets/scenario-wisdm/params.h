@@ -1,13 +1,13 @@
 #ifndef __KNN_PARAMS_H__
 #define __KNN_PARAMS_H__
 
-#define NUM_TRAINING_SAMPLES 4336
+#define N_TRAINING 4336
 
-#define NUM_TESTING_SAMPLES 1082
+#define N_TESTING 1082
 
-#define NUM_FEATURES 43
+#define N_FEATURES 43
 
-#define NUM_CLASSES 6
+#define N_CLASSES 6
 
 // clang-format off
 #define TRAINING_DATA_FILE_NAME train.dat

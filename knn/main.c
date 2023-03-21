@@ -11,17 +11,17 @@
 #include "knn.h"
 
 //{{{1,2,3,4,5},'a'}};
-Point training_points[NUM_TRAINING_SAMPLES] = {
+Point training_points[N_TRAINING] = {
 #include TRAINING_DATA_FILE
 };
 
 //{{{1,2,3,4,5},'a'}};
-Point test_points[NUM_TESTING_SAMPLES] = {
+Point test_points[N_TESTING] = {
 #include TEST_DATA_FILE
 };
 
 #if VERIFY == 1 // verify if classifications are still the original
-unsigned char key[NUM_TESTING_SAMPLES] = {
+unsigned char key[N_TESTING] = {
 #include VERIFICATION_DATA_FILE
 };
 #endif
@@ -31,15 +31,14 @@ int main(int argc, char **argv)
     printf("Data points initialized with dataset...\n");
 
 #if NORMALIZE == 1 // minmax normalization
-    datatype min[NUM_FEATURES];
-    datatype max[NUM_FEATURES];
+    datatype min[N_FEATURES];
+    datatype max[N_FEATURES];
 
     // determine min and max from known points
-    minmax(min, max, NUM_TRAINING_SAMPLES, training_points, NUM_FEATURES);
+    minmax(min, max, N_TRAINING, training_points, N_FEATURES);
 
     // normalize known points
-    minmax_normalize(min, max, NUM_TRAINING_SAMPLES, training_points,
-                     NUM_FEATURES);
+    minmax_normalize(min, max, N_TRAINING, training_points, N_FEATURES);
 #endif
 
 #if ACCURACY == 1
@@ -77,19 +76,17 @@ int main(int argc, char **argv)
 
     printf("kNN done.\n\n");
 
-    printf("kNN: number of classes = %d\n", NUM_CLASSES);
-    printf("kNN: number of training instances = %d\n", NUM_TRAINING_SAMPLES);
-    printf("kNN: number of features = %d\n", NUM_FEATURES);
+    printf("kNN: number of classes = %d\n", N_CLASSES);
+    printf("kNN: number of training instances = %d\n", N_TRAINING);
+    printf("kNN: number of features = %d\n", N_FEATURES);
     printf("kNN: k = %d\n", K);
 
-    printf("kNN: number of classified instances = %d\n", NUM_TESTING_SAMPLES);
+    printf("kNN: number of classified instances = %d\n", N_TESTING);
 
 #if ACCURACY == 1
     printf("kNN: number of classifications wrong = %d\n", fail);
-    printf("kNN: number of classifications right = %d\n",
-           NUM_TESTING_SAMPLES - fail);
-    printf("kNN: accuracy = %.2f %c\n\n",
-           100 * (float)(NUM_TESTING_SAMPLES - fail) / (float)NUM_TESTING_SAMPLES, '%');
+    printf("kNN: number of classifications right = %d\n", N_TESTING - fail);
+    printf("kNN: accuracy = %.2f %c\n\n", 100 * (float)(N_TESTING - fail) / (float)N_TESTING, '%');
 #endif
 
 #if VERIFY == 1

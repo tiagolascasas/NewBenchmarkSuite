@@ -7,7 +7,7 @@
 #define ACCURACY 1
 #define NORMALIZE 1
 #define K 20
-#define DATATYPE float
+#define DATA_TYPE float
 
 #define VERIFY 1
 

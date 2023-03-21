@@ -7,7 +7,7 @@
 #define ACCURACY 1
 #define NORMALIZE 1
 #define K 3
-#define DATATYPE double
+#define DATA_TYPE double
 
 #define VERIFY 1
 

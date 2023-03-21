@@ -16,7 +16,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef SCENARIO
-#define SCENARIO WI_K3_F
+#define SCENARIO GB_K20_F
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -150,11 +150,11 @@
 
 #include SCENARIO_PARAMS
 
-#ifndef DATATYPE
+#ifndef DATA_TYPE
 #warning("DATATYPE not set by scenario.")
-#define DATATYPE float
+#define DATA_TYPE float
 #endif
-typedef DATATYPE datatype;
+typedef DATA_TYPE datatype;
 
 #define FP_TYPE_float 1
 #define FP_TYPE_double 2
@@ -162,10 +162,10 @@ typedef DATATYPE datatype;
 #define _FP_TYPE(x) FP_TYPE_##x
 #define FP_TYPE(x) _FP_TYPE(x)
 
-#if FP_TYPE(DATATYPE) == FP_TYPE_double
+#if FP_TYPE(DATA_TYPE) == FP_TYPE_double
 #define MAX_FP_VAL DBL_MAX
 #define MIN_FP_VAL -DBL_MAX
-#elif FP_TYPE(DATATYPE) == FP_TYPE_float
+#elif FP_TYPE(DATA_TYPE) == FP_TYPE_float
 #define MAX_FP_VAL FLT_MAX
 #define MIN_FP_VAL -FLT_MAX
 #else
@@ -217,22 +217,22 @@ typedef DATATYPE datatype;
 #include "timer.h"
 #endif
 
-#if NUM_CLASSES > 128
-#define class_t short // consider 0..32767 classes and -1 for unknown
+#if N_CLASSES > 128
+#define CLASS_TYPE short // consider 0..32767 classes and -1 for unknown
 #else
-#define class_t char // consider 0..127 classes and -1 for unknown
+#define CLASS_TYPE char // consider 0..127 classes and -1 for unknown
 #endif
 
 typedef struct
 {
-    datatype features[NUM_FEATURES];
-    class_t classification_id;
+    DATA_TYPE features[N_FEATURES];
+    CLASS_TYPE classification_id;
 } Point;
 
 typedef struct
 {
-    class_t classification_id;
-    datatype distance;
+    CLASS_TYPE classification_id;
+    DATA_TYPE distance;
 } BestPoint;
 
 #define TRAINING_DATA_FILE                               \
@@ -245,16 +245,6 @@ typedef struct
 #define VERIFICATION_DATA_FILE                           \
     PATH_BUILDER(DATASETS_DIRECTORY, SCENARIO_DIRECTORY, \
                  VERIFICATION_DATA_FILE_NAME)
-
-// these are just some aliases for the macros used in knn_arrays
-// hopefully they will not cause any issues
-#define N_TRAINING NUM_TRAINING_SAMPLES
-#define N_FEATURES NUM_FEATURES
-#define N_TESTING NUM_TESTING_SAMPLES
-#define N_CLASSES NUM_CLASSES
-
-#define CLASS_TYPE class_t
-#define DATA_TYPE datatype
 
 #endif
 
