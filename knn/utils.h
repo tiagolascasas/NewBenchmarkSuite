@@ -1,8 +1,7 @@
-#ifndef __KNN_UTILS_H__
-#define __KNN_UTILS_H__
+#pragma once
 
+#include <cmath>
 #include "scenarios.h"
-#include <math.h>
 
 char get_class_name(CLASS_TYPE class_id);
 
@@ -19,10 +18,8 @@ void initialize_new_points(int num_new_points, Point *new_points,
 
 void show_point(Point point, int num_features);
 
-void minmax(datatype *min, datatype *max, int num_points, Point *known_points,
+void minmax(DATA_TYPE *min, DATA_TYPE *max, int num_points, Point *known_points,
             int num_features);
 
-void minmax_normalize(datatype *min, datatype *max, int num_points,
+void minmax_normalize(DATA_TYPE *min, DATA_TYPE *max, int num_points,
                       Point *points, int num_features);
-
-#endif

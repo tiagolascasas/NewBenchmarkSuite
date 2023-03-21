@@ -2,8 +2,7 @@
  * FEUP.DEI, v0.6 November 2021
  * Vitis HLS version Feburary 2023
  */
-#ifndef __SCENARIOS_H__
-#define __SCENARIOS_H__
+#pragma once
 
 ///////////////////////////////////////////////////////////////////////////////
 //                    TURN ON SIMPLIFIED VITIS HLS VERSION                   //
@@ -16,7 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #ifndef SCENARIO
-#define SCENARIO GB_K20_F
+#define SCENARIO WI_K3_F
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -213,27 +212,26 @@ typedef DATA_TYPE datatype;
 #define NORMALIZE 1
 #endif
 
-#if TIMMING == 1
-#include "timer.h"
-#endif
-
 #if N_CLASSES > 128
 #define CLASS_TYPE short // consider 0..32767 classes and -1 for unknown
 #else
 #define CLASS_TYPE char // consider 0..127 classes and -1 for unknown
 #endif
 
-typedef struct
+typedef struct Point Point;
+typedef struct BestPoint BestPoint;
+
+struct Point
 {
     DATA_TYPE features[N_FEATURES];
     CLASS_TYPE classification_id;
-} Point;
+};
 
-typedef struct
+struct BestPoint
 {
     CLASS_TYPE classification_id;
     DATA_TYPE distance;
-} BestPoint;
+};
 
 #define TRAINING_DATA_FILE                               \
     PATH_BUILDER(DATASETS_DIRECTORY, SCENARIO_DIRECTORY, \
@@ -248,4 +246,3 @@ typedef struct
 
 #endif
 
-#endif
