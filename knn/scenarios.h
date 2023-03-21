@@ -34,21 +34,117 @@
 #define GB_K20_D 8
 
 #if SCENARIO == WI_K3_F
-#include "params-wisdm-k3-float.h"
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define TRAINING_DATA_FILE "wisdm-train.dat"
+#define TEST_DATA_FILE "wisdm-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 3
+#define DATA_TYPE float
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-wisdm-k3.dat"
 #elif SCENARIO == WI_K3_D
-#include "params-wisdm-k3-double.h"
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define TRAINING_DATA_FILE "wisdm-train.dat"
+#define TEST_DATA_FILE "wisdm-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 3
+#define DATA_TYPE double
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-wisdm-k3.dat"
 #elif SCENARIO == WI_K20_F
-#include "params-wisdm-k20-float.h"
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define TRAINING_DATA_FILE "wisdm-train.dat"
+#define TEST_DATA_FILE "wisdm-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 20
+#define DATA_TYPE float
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-wisdm-k20.dat"
 #elif SCENARIO == WI_K20_D
-#include "params-wisdm-k20-double.h"
+#define N_TRAINING 4336
+#define N_TESTING 1082
+#define N_FEATURES 43
+#define N_CLASSES 6
+#define TRAINING_DATA_FILE "wisdm-train.dat"
+#define TEST_DATA_FILE "wisdm-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 20
+#define DATA_TYPE double
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-wisdm-k20.dat"
 #elif SCENARIO == GA_K20_F
-#include "params-ga-k20-float.h"
+#define N_TRAINING 8004
+#define N_TESTING 1996
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define TRAINING_DATA_FILE "ga-train.dat"
+#define TEST_DATA_FILE "ga-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 20
+#define DATA_TYPE float
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-ga-k20.dat"
 #elif SCENARIO == GA_K20_D
-#include "params-ga-k20-double.h"
+#define N_TRAINING 8004
+#define N_TESTING 1996
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define TRAINING_DATA_FILE "ga-train.dat"
+#define TEST_DATA_FILE "ga-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 20
+#define DATA_TYPE double
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-ga-k20.dat"
 #elif SCENARIO == GB_K20_F
-#include "params-gb-k20-float.h"
+#define N_TRAINING 40002
+#define N_TESTING 9998
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define TRAINING_DATA_FILE "gb-train.dat"
+#define TEST_DATA_FILE "gb-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 20
+#define DATA_TYPE float
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-gb-k20.dat"
 #elif SCENARIO == GB_K20_D
-#include "params-gb-k20-double.h"
+#define N_TRAINING 40002
+#define N_TESTING 9998
+#define N_FEATURES 100
+#define N_CLASSES 8
+#define TRAINING_DATA_FILE "gb-train.dat"
+#define TEST_DATA_FILE "gb-test.dat"
+#define TIMMING 1
+#define ACCURACY 1
+#define NORMALIZE 1
+#define K 20
+#define DATA_TYPE double
+#define VERIFY 1
+#define VERIFICATION_DATA_FILE "key-gb-k20.dat"
 #endif
 
 ///////////////////////////////////////////////////////////////////////////////
