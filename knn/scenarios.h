@@ -4,6 +4,9 @@
  */
 #pragma once
 
+#include <cfloat>
+#include <cstdint>
+
 ///////////////////////////////////////////////////////////////////////////////
 //                    TURN ON SIMPLIFIED VITIS HLS VERSION                   //
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,124 +33,27 @@
 #define GB_K20_F 7
 #define GB_K20_D 8
 
-#ifdef VITIS_HLS
 #if SCENARIO == WI_K3_F
-#define N_TRAINING 4336
-#define N_TESTING 1082
-#define N_FEATURES 43
-#define N_CLASSES 6
-#define K 3
-#define DATA_TYPE float
-#endif
-#if SCENARIO == WI_K3_D
-#define N_TRAINING 4336
-#define N_TESTING 1082
-#define N_FEATURES 43
-#define N_CLASSES 6
-#define K 3
-#define DATA_TYPE double
-#endif
-#if SCENARIO == WI_K20_F
-#define N_TRAINING 4336
-#define N_TESTING 1082
-#define N_FEATURES 43
-#define N_CLASSES 6
-#define K 20
-#define DATA_TYPE float
-#endif
-#if SCENARIO == WI_K20_D
-#define N_TRAINING 4336
-#define N_TESTING 1082
-#define N_FEATURES 43
-#define N_CLASSES 6
-#define K 20
-#define DATA_TYPE double
-#endif
-#if SCENARIO == GA_K20_F
-#define N_TRAINING 8004
-#define N_TESTING 100 // prev: 1996
-#define N_FEATURES 100
-#define N_CLASSES 8
-#define K 20
-#define DATA_TYPE float
-#endif
-#if SCENARIO == GA_K20_D
-#define N_TRAINING 8004
-#define N_TESTING 1996
-#define N_FEATURES 100
-#define N_CLASSES 8
-#define K 20
-#define DATA_TYPE double
-#endif
-#if SCENARIO == GB_K20_F
-#define N_TRAINING 40002
-#define N_TESTING 9998
-#define N_FEATURES 100
-#define N_CLASSES 8
-#define K 20
-#define DATA_TYPE float
-#endif
-#if SCENARIO == GB_K20_D
-#define N_TRAINING 40002
-#define N_TESTING 9998
-#define N_FEATURES 100
-#define N_CLASSES 8
-#define K 20
-#define DATA_TYPE double
-#endif
-
-#if N_CLASSES > 128
-#define class_t short // consider 0..32767 classes and -1 for unknown
-#else
-#define class_t char // consider 0..127 classes and -1 for unknown
-#endif
-#define CLASS_TYPE class_t
-
-#else
-// clang-format off
-#define DATASETS_DIRECTORY ./datasets
-
-#if SCENARIO == WI_K3_F
-#define SCENARIO_FILE params-k3-float.h
-#define SCENARIO_DIRECTORY scenario-wisdm
+#include "params-wisdm-k3-float.h"
 #elif SCENARIO == WI_K3_D
-#define SCENARIO_FILE params-k3-double.h
-#define SCENARIO_DIRECTORY scenario-wisdm
+#include "params-wisdm-k3-double.h"
 #elif SCENARIO == WI_K20_F
-#define SCENARIO_FILE params-k20-float.h
-#define SCENARIO_DIRECTORY scenario-wisdm
+#include "params-wisdm-k20-float.h"
 #elif SCENARIO == WI_K20_D
-#define SCENARIO_FILE params-k20-double.h
-#define SCENARIO_DIRECTORY scenario-wisdm
+#include "params-wisdm-k20-double.h"
 #elif SCENARIO == GA_K20_F
-#define SCENARIO_FILE params-k20-float.h
-#define SCENARIO_DIRECTORY scenario-gen100x8x10000
+#include "params-ga-k20-float.h"
 #elif SCENARIO == GA_K20_D
-#define SCENARIO_FILE params-k20-double.h
-#define SCENARIO_DIRECTORY scenario-gen100x8x10000
+#include "params-ga-k20-double.h"
 #elif SCENARIO == GB_K20_F
-#define SCENARIO_FILE params-k20-float.h
-#define SCENARIO_DIRECTORY scenario-gen100x8x50000
+#include "params-gb-k20-float.h"
 #elif SCENARIO == GB_K20_D
-#define SCENARIO_FILE params-k20-double.h
-#define SCENARIO_DIRECTORY scenario-gen100x8x50000
+#include "params-gb-k20-double.h"
 #endif
-
-// clang-format on
 
 ///////////////////////////////////////////////////////////////////////////////
 //                                 DEFAULTS                                  //
 ///////////////////////////////////////////////////////////////////////////////
-#include <float.h>
-#include <stdint.h>
-
-// clang-format off
-#define STR(x) #x
-#define PATH_BUILDER(directory, scenarioDirectory, scenarioFile) STR(directory/scenarioDirectory/scenarioFile)
-#define SCENARIO_PARAMS PATH_BUILDER(DATASETS_DIRECTORY, SCENARIO_DIRECTORY, SCENARIO_FILE)
-// clang-format on
-
-#include SCENARIO_PARAMS
 
 #ifndef DATA_TYPE
 #warning("DATATYPE not set by scenario.")
@@ -232,17 +138,4 @@ struct BestPoint
     CLASS_TYPE classification_id;
     DATA_TYPE distance;
 };
-
-#define TRAINING_DATA_FILE                               \
-    PATH_BUILDER(DATASETS_DIRECTORY, SCENARIO_DIRECTORY, \
-                 TRAINING_DATA_FILE_NAME)
-
-#define TEST_DATA_FILE \
-    PATH_BUILDER(DATASETS_DIRECTORY, SCENARIO_DIRECTORY, TEST_DATA_FILE_NAME)
-
-#define VERIFICATION_DATA_FILE                           \
-    PATH_BUILDER(DATASETS_DIRECTORY, SCENARIO_DIRECTORY, \
-                 VERIFICATION_DATA_FILE_NAME)
-
-#endif
 
