@@ -3,7 +3,7 @@
 Compile it with:
 
 ```
-gcc *.c -o knn -D SCENARIO=<ID>
+g++ *.c -o knn -D SCENARIO=<ID>
 ```
 
 Where `<SCENARIO>` is the flag used to choose one of the following scenarios. Use the value from the first column, e.g., `-D SCENARIO=GA_K20_F`:
